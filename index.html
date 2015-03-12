@@ -1,0 +1,159 @@
+<html>
+<head>
+    <title></title>
+    <!-- <link rel="stylesheet" href="styles/main.css"> -->
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/lonely.css">
+    <link rel="stylesheet" href="styles/raccoon.css">
+    <link rel="stylesheet" href="styles/nprogress.css">
+</head>
+<body>
+
+    <div>
+        <header>
+            <a href="#/latest">RACCO<img src="./images/logo.png" alt="">NBLOG</a>
+            <input type="radio" name="labels" id="menu">
+            <nav class="clear">
+                <div class="buttons clear">
+                    <label class="question" for="quest">?</label>
+                    <label class="exclamatory" for="exclam">!</label>
+                    <label class="tagLabel" for="tags"><img src="./images/icon-tag.png"></label>
+                    <label class="menuLabel" for="menu"><img src="./images/icon-menu.png"></label>
+                </div>
+                <ul class="clear">
+                    <li><a href="#/js">JAVASCRIPT</a></li>
+                    <li><a href="#/css">CSS</a></li>
+                    <li class="active"><a href="#/latest">LATEST</a></li>
+                    <li><a href="#/html">HTML</a></li>
+                    <li><a href="#/design">DESIGN</a></li>
+                </ul>
+            </nav>
+        </header>
+
+
+      <div class="view">
+        <div class="popUp">
+            <div class="fader" ng-show="fillingForm"></div>
+            <div class="create">
+                <input type="text" name="author" placeholder="Author" class="form-control">
+                <input type="text" name="title" placeholder="Title" class="form-control">
+                <textarea type="text" name="text" placeholder="Text" class="form-control"></textarea>
+                <input type="text" name="url" placeholder="Image URL" class="form-control">
+                <input type="file">
+                <button class="btn btn-default submit">Save</button>
+                <button class="btn btn-default cancel">Cancel</button>
+            </div>
+        </div>
+        <div class="content">
+        </div>
+      </div>
+    </div>
+    
+    <script id="blogPost" type="text/template">
+        <div>
+            <% if (typeof(image) !== "undefined") { %>
+                <a href="#/post/<%= _id %>"><img src="<%= image %>"></a>
+            <% } %>
+            <% if (typeof(title) !== "undefined") { %>
+                <h4><a href="#/post/<%= _id %>"><%= title %></a></h4>
+            <% } %>
+            <div class="info">
+                <% if (typeof(date) !== "undefined") { %>
+                    <span><%= date %></span>
+                
+                <%} else { %>
+                    <span>no date</span>
+                <% } %>
+
+                <% if (typeof(author) !== "undefined") { %>
+                    <a href="#">by <%= author %></a>
+                <% } %>
+                <div class="social">
+                    <ul>
+                        <li class="facebook">
+                            <span class="logo"></span>
+                            <span class="number">16</span>
+                        </li>
+                        <li class="google">
+                            <span class="logo"></span>
+                            <span class="number">7</span>
+                        </li>
+                        <li class="twitter">
+                            <span class="logo"></span>
+                            <span class="number">15</span>
+                        </li>
+                        <li class="vk">
+                            <span class="logo"></span>
+                            <span class="number">16</span>
+                        </li>
+                        <li class="yandex">
+                            <span class="logo"></span>
+                            <span class="number">0</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <% if (typeof(text) !== "undefined") { %>
+                <p><%= text %></p>
+            <% } %>
+            <button class="btn btn-default destroy" type="button">Remove</button>
+        </div>
+    </script>
+
+    <script id="aside" type="text/template">
+        <aside>
+            <input type="radio" name="labels" id="quest">
+            <article class="about">
+                <h4>ABOUT</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, totam consequuntur, velit sint expedita adipisci ipsam voluptas sed rem fuga vitae! Placeat quasi illo recusandae, molestias necessitatibus laboriosam a, enim?</p>
+            </article>
+            <input type="radio" name="labels" id="exclam">
+            <article class="some-shit">
+                <h4>SOME SHIT</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, totam consequuntur, velit sint expedita adipisci ipsam voluptas sed rem fuga vitae! Placeat quasi illo recusandae, molestias necessitatibus laboriosam a, enim? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, totam consequuntur, velit sint expedita adipisci ipsam voluptas sed rem fuga vitae! Placeat quasi illo recusandae, molestias necessitatibus laboriosam a, enim?</p>
+            </article>
+            <input type="radio" name="labels" id="tags">
+            <div class="tags">
+                <a href="#/tags" class="tag">coon</a>
+                <a href="#/tags" class="tag">cat</a>
+                <a href="#/tags" class="tag">dog</a>
+                <a href="#/tags" class="tag">raccoon</a>
+                <a href="#/tags" class="tag">designer</a>
+                <a href="#/tags" class="tag">mammal</a>
+                <a href="#/tags" class="tag">whale</a>
+                <a href="#/tags" class="tag">ninja</a>
+            </div>
+        </aside>
+    </script>
+
+    <script id="onePost" type="text/template">
+        <div class="lonely">
+            <article>
+                <img src="<%= image %>">
+                <input type="text" name="title" value="<%= title %>" disabled class="form-control">
+                <div class="info">
+                    <span><%= date %></span>
+                    <a href="#/authors">by <%= author %></a>
+                </div>
+                <textarea disabled name="text" class="form-control"><%= text %></textarea>
+                <input type="file">
+                <input type="text" name="image" value="<%= image %>" placeholder="Image URL" class="form-control">
+                <button class="btn btn-default edit" type="button">Edit</button>
+                <button class="btn btn-default save" type="button">Save</button>
+            </article>
+        </div>
+    </script>
+
+    <script id="addButton" type="text/template">
+        <button class="btn add">New post</button>
+    </script>
+
+    <script src="scripts/jquery-1.11.2.js"></script>
+    <script src="scripts/underscore.js"></script>
+    <script src="scripts/backbone.js"></script>
+    <script src="scripts/nprogress.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/ajax.js"></script>
+</body>
+</html>
